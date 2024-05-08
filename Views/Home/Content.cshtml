@@ -1,0 +1,63 @@
+﻿@model List<WebApplication2.Models.Content>
+<h2>Content</h2>
+<style>
+    .container {
+        display: flex;
+    }
+
+    #panel {
+        width: 250px;
+        text-decoration-color: black;
+        background-color: #f1f1f1;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .nav.flex-column {
+        display: flex; /* Create flex container */
+        flex-direction: column; /* Align items vertically */
+    }
+
+    #video-container {
+        flex-grow: 1;
+        height: auto;
+        position: relative;
+    }
+
+</style>
+<div class="container">
+    <div class="navbar-left col-sm" id="panel">
+        <ul class="nav flex-column">
+            @foreach (var i in Model)
+            {
+                <li>
+                    <a data-url="@i.ContentUrl" class="content-link text-black">@i.Title</a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="main-panel">
+        <div id="video-container">
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $(".content-link").click(function (event) {
+                        event.preventDefault(); // Prevent default anchor tag behavior
+
+                        var url = $(this).data("url"); // Get the URL from the data-url attribute
+
+                        // Check if URL is valid (optional, add additional validation if needed)
+                        if (url && url.trim() !== "") {
+                            $("#video-container iframe").attr("src", url); // Update iframe source
+                        } else {
+                            // Handle invalid URL (e.g., display an error message)
+                            console.error("Invalid URL:", url);
+                        }
+                    });
+                });
+            </script>
+            <iframe width="660" height="415" src="" title="" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen> </iframe>
+        </div>
+    </div>
+</div>

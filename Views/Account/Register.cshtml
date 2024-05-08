@@ -1,0 +1,60 @@
+﻿@model WebApplication2.Models.User
+<style>
+    form{
+        padding: 8px;
+    }
+</style>
+
+<form asp-action="Register" asp-controller="Account" method="post">
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input type="text" asp-for="Email" placeholder="Enter Email" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PasswordHash">Password</label>
+        <input type="password" asp-for="PasswordHash" placeholder="Enter Your Password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input type="text" asp-for="FirstName" placeholder="Enter Your First Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input type="text" asp-for="LastName" placeholder="Enter Your Last Name" class="form-control" />
+    </div>
+    
+
+    <div>
+        <br />
+        @Html.LabelFor(m => m.RoleName)
+
+        <div>
+            @Html.RadioButtonFor(m => m.RoleName, "Student", new{id = "Student"})
+            @Html.LabelFor(m => m.RoleName, "Student", new{@class="radio-label", @for="Student"})
+
+            @Html.RadioButtonFor(m => m.RoleName, "Instructor", new{id = "Instructor"})
+            @Html.LabelFor(m => m.RoleName, "Instructor", new{@class="radio-label", @for="Instructor"})
+        </div>
+    </div>
+    
+       @*  <label asp-for="Rolename">Role &nbsp;</label> *@
+       
+            @* @Html.RadioButtonFor(m=>m.Rolename,"Student")
+            @Html.RadioButtonFor(m=>m.Rolename,"Instructor") *@
+           @*  <input type="radio" asp-for="Rolename" value="Student" name="Rolename" class="form-check-input" />
+            <input type="radio" asp-for="Rolename" value="Instructor" name="Rolename" class="form-check-input" />
+         *@
+       
+    
+
+    <br>
+    <input type="submit" class="btn btn-primary" value="Register"/>
+</form>
+
+<span>
+    Account Exists
+    <a asp-action="Login" asp-controller="Account">Login</a>
+</span>

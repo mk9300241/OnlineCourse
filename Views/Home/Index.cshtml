@@ -1,0 +1,22 @@
+﻿@model List<WebApplication2.Models.Course>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@foreach(var i in Model)
+{
+    <div class="card" style="width: 16rem;">
+        <img class="card-img-top" src="@i.Img" alt="Card image cap" width="80px" height="80px">
+        <div class="card-body">
+            <h5 class="card-title">@i.CourseName</h5>
+            <p class="card-text text-sm">@i.CourseDescription</p>
+            
+            <a asp-action="Content" asp-controller="Home" asp-route-id="@i.CourseId" class="btn btn-primary">Go</a>
+        </div>
+    </div>
+}
